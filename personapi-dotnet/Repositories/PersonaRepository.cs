@@ -33,9 +33,17 @@ namespace personapi_dotnet.Repositories
 
         public async Task UpdatePersonaAsync(Persona persona)
         {
+            var existingEntity = _context.Personas.Local.FirstOrDefault(p => p.Cc == persona.Cc);
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).State = EntityState.Detached;
+            }
+
             _context.Entry(persona).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+
 
         public async Task DeletePersonaAsync(int id)
         {
