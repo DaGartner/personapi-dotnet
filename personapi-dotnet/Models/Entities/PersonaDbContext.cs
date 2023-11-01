@@ -25,13 +25,15 @@ public partial class PersonaDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-9NLKEPQ\\SQLEXPRESS;Database=persona_db;Trusted_Connection=True;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=persona_db;Trusted_Connection=True;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Estudio>(entity =>
         {
-            entity.HasKey(e => new { e.IdProf, e.CcPer }).HasName("PK__Estudios__FB3F71A6F6895CCB");
+            entity.HasKey(e => new { e.IdProf, e.CcPer }).HasName("PK__estudios__FB3F71A6820ADDC8");
+
+            entity.ToTable("estudios");
 
             entity.Property(e => e.IdProf).HasColumnName("id_prof");
             entity.Property(e => e.CcPer).HasColumnName("cc_per");
@@ -43,17 +45,20 @@ public partial class PersonaDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("univer");
 
+            entity.HasOne(d => d.CcPerNavigation).WithMany(p => p.Estudios)
+                .HasForeignKey(d => d.CcPer)
+                .HasConstraintName("FK__estudios__cc_per__31B762FC");
+
             entity.HasOne(d => d.IdProfNavigation).WithMany(p => p.Estudios)
                 .HasForeignKey(d => d.IdProf)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Estudios__id_pro__44FF419A");
+                .HasConstraintName("FK__estudios__id_pro__32AB8735");
         });
 
         modelBuilder.Entity<Persona>(entity =>
         {
-            entity.HasKey(e => e.Cc).HasName("PK__Persona__3213666D32CC640A");
+            entity.HasKey(e => e.Cc).HasName("PK__persona__3213666DE417F3F3");
 
-            entity.ToTable("Persona");
+            entity.ToTable("persona");
 
             entity.Property(e => e.Cc)
                 .ValueGeneratedNever()
@@ -66,7 +71,6 @@ public partial class PersonaDbContext : DbContext
             entity.Property(e => e.Genero)
                 .HasMaxLength(1)
                 .IsUnicode(false)
-                .IsFixedLength()
                 .HasColumnName("genero");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(45)
@@ -76,9 +80,9 @@ public partial class PersonaDbContext : DbContext
 
         modelBuilder.Entity<Profesion>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Profesio__3213E83FBB9478D0");
+            entity.HasKey(e => e.Id).HasName("PK__profesio__3213E83F2DD89E41");
 
-            entity.ToTable("Profesion");
+            entity.ToTable("profesion");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
@@ -94,9 +98,9 @@ public partial class PersonaDbContext : DbContext
 
         modelBuilder.Entity<Telefono>(entity =>
         {
-            entity.HasKey(e => e.Num).HasName("PK__Telefono__DF908D65D62F5056");
+            entity.HasKey(e => e.Num).HasName("PK__telefono__DF908D65F5528E02");
 
-            entity.ToTable("Telefono");
+            entity.ToTable("telefono");
 
             entity.Property(e => e.Num)
                 .HasMaxLength(15)
@@ -110,7 +114,8 @@ public partial class PersonaDbContext : DbContext
 
             entity.HasOne(d => d.DuenioNavigation).WithMany(p => p.Telefonos)
                 .HasForeignKey(d => d.Duenio)
-                .HasConstraintName("FK__Telefono__duenio__4AB81AF0");
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__telefono__duenio__3587F3E0");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -13,5 +13,7 @@ public partial class Estudio
 
     public string? Univer { get; set; }
 
+    public virtual Persona CcPerNavigation { get; set; } = null!;
+
     public virtual Profesion IdProfNavigation { get; set; } = null!;
 }

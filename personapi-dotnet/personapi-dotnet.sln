@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personapi-dotnet", "personapi-dotnet.csproj", "{54D7C17F-C060-4694-958B-AA6178DD0E6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personapi-dotnet", "personapi-dotnet.csproj", "{B677CA6E-E14E-4205-94E6-FB8858096C3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{54D7C17F-C060-4694-958B-AA6178DD0E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54D7C17F-C060-4694-958B-AA6178DD0E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54D7C17F-C060-4694-958B-AA6178DD0E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54D7C17F-C060-4694-958B-AA6178DD0E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B677CA6E-E14E-4205-94E6-FB8858096C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B677CA6E-E14E-4205-94E6-FB8858096C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B677CA6E-E14E-4205-94E6-FB8858096C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B677CA6E-E14E-4205-94E6-FB8858096C3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3EF7C316-48B6-49EA-9124-C9F4EA0A95D4}
+		SolutionGuid = {FA10A08B-77CE-4AF7-BD37-DB3C22E3BD3E}
 	EndGlobalSection
 EndGlobal

@@ -7,7 +7,7 @@ public partial class Profesion
 {
     public int Id { get; set; }
 
-    public string? Nom { get; set; }
+    public string Nom { get; set; } = null!;
 
     public string? Des { get; set; }
 
