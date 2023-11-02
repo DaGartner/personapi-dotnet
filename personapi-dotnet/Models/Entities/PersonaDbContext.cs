@@ -24,14 +24,15 @@ public partial class PersonaDbContext : DbContext
     public virtual DbSet<Telefono> Telefonos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=persona_db;Trusted_Connection=True;TrustServerCertificate=true");
+    {
+        optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=persona_db;Trusted_Connection=True;TrustServerCertificate=true");
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Estudio>(entity =>
         {
-            entity.HasKey(e => new { e.IdProf, e.CcPer }).HasName("PK__estudios__FB3F71A6820ADDC8");
+            entity.HasKey(e => new { e.IdProf, e.CcPer }).HasName("PK__estudios__FB3F71A696DDEDF8");
 
             entity.ToTable("estudios");
 
@@ -47,16 +48,16 @@ public partial class PersonaDbContext : DbContext
 
             entity.HasOne(d => d.CcPerNavigation).WithMany(p => p.Estudios)
                 .HasForeignKey(d => d.CcPer)
-                .HasConstraintName("FK__estudios__cc_per__31B762FC");
+                .HasConstraintName("FK__estudios__cc_per__44CA3770");
 
             entity.HasOne(d => d.IdProfNavigation).WithMany(p => p.Estudios)
                 .HasForeignKey(d => d.IdProf)
-                .HasConstraintName("FK__estudios__id_pro__32AB8735");
+                .HasConstraintName("FK__estudios__id_pro__45BE5BA9");
         });
 
         modelBuilder.Entity<Persona>(entity =>
         {
-            entity.HasKey(e => e.Cc).HasName("PK__persona__3213666DE417F3F3");
+            entity.HasKey(e => e.Cc).HasName("PK__persona__3213666D5250F091");
 
             entity.ToTable("persona");
 
@@ -80,7 +81,7 @@ public partial class PersonaDbContext : DbContext
 
         modelBuilder.Entity<Profesion>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__profesio__3213E83F2DD89E41");
+            entity.HasKey(e => e.Id).HasName("PK__profesio__3213E83F75E02CC2");
 
             entity.ToTable("profesion");
 
@@ -98,7 +99,7 @@ public partial class PersonaDbContext : DbContext
 
         modelBuilder.Entity<Telefono>(entity =>
         {
-            entity.HasKey(e => e.Num).HasName("PK__telefono__DF908D65F5528E02");
+            entity.HasKey(e => e.Num).HasName("PK__telefono__DF908D655D212C30");
 
             entity.ToTable("telefono");
 
@@ -115,7 +116,7 @@ public partial class PersonaDbContext : DbContext
             entity.HasOne(d => d.DuenioNavigation).WithMany(p => p.Telefonos)
                 .HasForeignKey(d => d.Duenio)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__telefono__duenio__3587F3E0");
+                .HasConstraintName("FK__telefono__duenio__489AC854");
         });
 
         OnModelCreatingPartial(modelBuilder);
